@@ -155,26 +155,30 @@ while true
  	choice_user=gets.chomp.to_i
  	puts
 
- 	if choice_user==1
- 		question1(handle)
- 	elsif choice_user==2
- 		question2(handle)
- 	elsif choice_user==3
- 		question3(handle)
- 	elsif choice_user==4
- 		question4(handle)
- 	elsif choice_user==5
- 		question5(handle)
- 	elsif choice_user==6
- 		question6(handle)
- 	elsif choice_user==7
- 		question7(handle)
- 	elsif choice_user==8
- 		question8(handle)
+ 	if choice_user.is_a? Integer
+	 	if choice_user==1
+	 		question1(handle)
+	 	elsif choice_user==2
+	 		question2(handle)
+	 	elsif choice_user==3
+	 		question3(handle)
+	 	elsif choice_user==4
+	 		question4(handle)
+	 	elsif choice_user==5
+	 		question5(handle)
+	 	elsif choice_user==6
+	 		question6(handle)
+	 	elsif choice_user==7
+	 		question7(handle)
+	 	elsif choice_user==8
+	 		question8(handle)
+	 	else
+	 		puts "Veuillez saisir un nombre entre 1 et 8"
+	 	end
+	 	puts	
+	 	puts "Appuyer sur 'entrée' pour poser une nouvelle question"
+	 	gets.chomp
  	else
- 		puts "Veuillez saisir un nombre entre 1 et 8"
+ 		puts "Veuillez renseigner un nombre (entre 1 et 8)"
  	end
- 	puts	
- 	puts "Appuyer sur 'entrée' pour poser une nouvelle question"
- 	gets.chomp
  end

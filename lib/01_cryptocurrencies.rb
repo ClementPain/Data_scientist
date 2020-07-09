@@ -86,19 +86,23 @@ while true
  	choice_user=gets.chomp.to_i
  	puts
 
- 	if choice_user==1
- 		question1(hash_values)
- 	elsif choice_user==2
- 		question2(hash_values)
- 	elsif choice_user==3
- 		question3(hash_values)
- 	elsif choice_user==4
- 		question4_with_help(hash_values)
- 	else
- 		puts "Veuillez saisir un nombre entre 1 et 4"
- 	end
+ 	if choice_user.is_a? Integer
+	 	if choice_user==1
+	 		question1(hash_values)
+	 	elsif choice_user==2
+	 		question2(hash_values)
+	 	elsif choice_user==3
+	 		question3(hash_values)
+	 	elsif choice_user==4
+	 		question4_with_help(hash_values)
+	 	else
+	 		puts "Veuillez saisir un nombre entre 1 et 4"
+	 	end
 
- 	puts
- 	puts "Appuyer sur 'entrée' pour poser une nouvelle question"
- 	gets.chomp
+	 	puts
+	 	puts "Appuyer sur 'entrée' pour poser une nouvelle question"
+	 	gets.chomp
+	else
+		puts "Veuillez saisir un nombre (entre 1 et 4)"
+	end
 end
