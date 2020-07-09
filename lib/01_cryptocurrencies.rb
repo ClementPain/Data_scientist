@@ -7,44 +7,98 @@ price = ["6558.07", "468.95", "0.487526", "762.84", "8.86", "85.26", "0.151268",
 
 hash_values = currency.zip(price).to_h
 
+hash_values.each  {|k,v| hash_values[k]= v.to_f}
+
+
 
 #La ou les crypto qui ont la plus grosse valeur.
 
-print "Les valeurs les plus hautes sont : "
-puts hash_values.max_by{|k,v| v}
+def question1(ahash)
+	print "Les valeurs les plus hautes sont : "
+	puts ahash.max_by{|k,v| v}
 
-puts
+	puts
+end
+
 
 #La ou les crypto qui ont la plus petite valeur.
 
-print "Les valeurs les plus basses sont : "
-puts hash_values.min_by{|k,v| v}
+def question2(ahash)
+	print "Les valeurs les plus basses sont : "
+	puts ahash.min_by{|k,v| v}
 
-puts
+	puts
+end
+
 
 #Les devises dont le cours est inférieur à 6000
 
-arr_6000=[]
+def question3(ahash)
+	arr_6000=[]
 
-hash_values.each do |currency|
-	if currency[1].to_i<6000
-		arr_6000 << currency[0]
+	ahash.each do |currency|
+		if currency[1].to_i<6000
+			arr_6000 << currency[0]
+		end
 	end
+
+	puts "Voici la liste des monnaies dont le cours est inférieur à 6000 : "
+	puts arr_6000.length
+
+	puts
 end
 
-puts "Voici la liste des monnaies dont le cours est inférieur à 6000 : "
-puts arr_6000.length
-
-puts
 
 #La devise la plus chère parmi celles dont le cours est inférieur à 6000.
 
-arr_6000_max={}
+def question4(ahash)
+	arr_6000_max={}
 
-hash_values.each do |currency,price|
-	if price.to_i<6000
-		arr_6000_max[:currency] = price
+	ahash.each do |currency,price|
+		if price.to_i<6000
+			arr_6000_max[:currency] = price
+		end
+	end
+
+puts max_value=arr_6000_max.max_by{|k,v| v}
+puts arr_6000_max.key(max_value)
+
+#puts "La devise la plus chère ...#{arr_6000_max.key()"
+end
+
+def question4_with_help(ahash)
+	the_least_bad = ahash.select { |k,v| v < 6000 }
+	the_least_bad.each do |k,v|
+		puts "La devise la plus chère parmi celles dont le cours est inférieur à 6000 est #{k} avec un cours de #{v}" if v == the_least_bad.values.max
 	end
 end
 
-puts arr_6000_max.values
+while true
+	puts "Bonjour ! Quelle est votre question ?"
+	puts "
+    1. La ou les crypto qui ont la plus grosse valeur.
+    2. La ou les crypto qui ont la plus petite valeur.
+    3. Les devises dont le cours est inférieur à 6000
+    4. La devise la plus chère parmi celles dont le cours est inférieur à 6000."
+
+ 	puts 
+ 	print "Numéro de question > "
+ 	choice_user=gets.chomp.to_i
+ 	puts
+
+ 	if choice_user==1
+ 		question1(hash_values)
+ 	elsif choice_user==2
+ 		question2(hash_values)
+ 	elsif choice_user==3
+ 		question3(hash_values)
+ 	elsif choice_user==4
+ 		question4_with_help(hash_values)
+ 	else
+ 		puts "Veuillez saisir un nombre entre 1 et 4"
+ 	end
+
+ 	puts
+ 	puts "Appuyer sur 'entrée' pour poser une nouvelle question"
+ 	gets.chomp
+end

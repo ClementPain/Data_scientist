@@ -51,8 +51,14 @@ def question4(array)
 	uppercase=0
 
 	array.each do |mail|
-		if mail[1] == mail[1].upcase
-			uppercase +=1
+		if mail[1] != '_'
+			if mail[1] == mail[1].upcase
+				uppercase +=1
+			end
+		else
+			if mail[2] == mail[2].upcase
+				uppercase +=1
+			end
 		end
 	end
 
@@ -83,14 +89,18 @@ end
 
 def question8(array)
 	size_mail= nb_handle_per_size(max_length(array), array)
+	while true
 	puts "Les handles de quelle taille voulez-vous compter ?"
 	print "> "
-	nb_user=Integer(gets)
-	if nb_user<=max_length(array)
-		puts "Il y a #{size_mail[nb_user+1]} handles de taille #{nb_user}"
-	else
-		puts "Il n'y a pas de handles de plus de #{max_length(array)} caractères."
-		puts size_mail
+	nb_user=gets.chomp.to_i
+
+		if nb_user<=max_length(array)
+			puts "Il y a #{size_mail[nb_user+1]} handles de taille #{nb_user}"
+			break
+		else
+			puts "Il n'y a pas de handles de plus de #{max_length(array)-1} caractères."
+			puts
+		end
 	end
 end
 
@@ -110,7 +120,7 @@ def nb_handle_per_size(max_length, array)
 	arr_mail_length =[]
 	mail_length = 0
 
-	(max_length+1).times do
+	(max_length+2).times do
 		nb_mail = 0
 
 		array.each do |mail|
@@ -126,8 +136,7 @@ def nb_handle_per_size(max_length, array)
 end
 
 
-
-
+#Menu
 
 while true
 	puts "Bonjour ! Quelle est votre question ?"
